@@ -29,12 +29,12 @@ pipeline {
                 sh 'tfdescsan --test --tsv https://dcos-terraform-mappings.mesosphere.com/ --var variables.tf --cloud "$(echo ${JOB_NAME##*/terraform-} | sed -E "s/(rm)?-.*//")"'
             }
         }
-        stage('Validate outputs.tf descriptions') {
-            agent { label "tfdescsan" }
-            steps {
-                sh 'tfdescsan --test --tsv https://dcos-terraform-mappings.mesosphere.com/ --var outputs.tf --cloud "$(echo ${JOB_NAME##*/terraform-} | sed -E "s/(rm)?-.*//")"'
-            }
-        }
+//        stage('Validate outputs.tf descriptions') {
+//            agent { label "tfdescsan" }
+//            steps {
+//                sh 'tfdescsan --test --tsv https://dcos-terraform-mappings.mesosphere.com/ --var outputs.tf --cloud "$(echo ${JOB_NAME##*/terraform-} | sed -E "s/(rm)?-.*//")"'
+//            }
+//        }
         stage('Integration Test') {
             agent { label "terraform" }
             steps {
