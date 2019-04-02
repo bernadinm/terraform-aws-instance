@@ -40,8 +40,8 @@ pipeline {
             steps {
                 sh 'printenv'
                 sh 'cd .. && git clone https://github.com/bernadinm/dcos-terraform.git && cd dcos-terraform && make init && cd ..'
-                sh 'rm -fr dcos-terraform/$(grep $(echo $GIT_URL | cut -d'/' -f 5 | cut -d'.' -f1) .gitmodules -B1 | grep path | cut -d' ' -f3)'
-                sh 'cp -fr $(echo $GIT_URL | cut -d'/' -f 5 | cut -d'.' -f1) dcos-terraform/$(grep $(echo $GIT_URL | cut -d'/' -f 5 | cut -d'.' -f1) .gitmodules -B1 | grep path | cut -d' ' -f3)'
+                sh "rm -fr dcos-terraform/$(grep $(echo $GIT_URL | cut -d'/' -f 5 | cut -d'.' -f1) .gitmodules -B1 | grep path | cut -d' ' -f3)"
+                sh "cp -fr $(echo $GIT_URL | cut -d'/' -f 5 | cut -d'.' -f1) dcos-terraform/$(grep $(echo $GIT_URL | cut -d'/' -f 5 | cut -d'.' -f1) .gitmodules -B1 | grep path | cut -d' ' -f3)"
                 sh 'cd dcos-terraform && make tenv'
             }
         }
